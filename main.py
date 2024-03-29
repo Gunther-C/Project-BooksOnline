@@ -1,4 +1,3 @@
-from pack_treatmentFileText import File_treatment
 from pack_treatmentData import Data_treatment
 
 """
@@ -31,8 +30,9 @@ from pack_treatmentData import Data_treatment
 
 def main():
 
-    Data_treatment.DataTreatment("directory_N")
+    Data_treatment.DataTreatment("product_N")
 
 
 if __name__ == '__main__':
     main()
+

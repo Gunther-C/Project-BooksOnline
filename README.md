@@ -62,7 +62,7 @@ Arg_2 =>  Optionel
 ( * ) =>
 
         Pour les produits =>
-            - Le titre uniquement sans son complément (avant ':' ou ',' )
+            - Inutile de mettre plus que les 4 premiers mots du titre
             - Dans tous les cas ne pas renseigner les parenthèses et leur contenu   
 ##
 #### _Exemples_ : ( Fichier main.py )
