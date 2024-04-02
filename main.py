@@ -27,7 +27,6 @@ from pack_treatmentData import Data_treatment
             - Dans tous les cas ne pas renseigner les parenthèses et leur contenu   
 """
 
-
 def main():
 
     Data_treatment.DataTreatment("product_N", 'The Coming Woman: A ...')

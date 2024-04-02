@@ -108,3 +108,4 @@ class ErrorsTreatment:
 
             case _:
                 print(f"Erreur veuillez réssayer")
+

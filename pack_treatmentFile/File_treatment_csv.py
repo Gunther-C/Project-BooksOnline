@@ -3,9 +3,6 @@ import Errors_treatment as Ers
 import csv, sys
 
 
-# EN COURS
-
-
 class FileTreatmentCsv:
     def __init__(self, data):
 

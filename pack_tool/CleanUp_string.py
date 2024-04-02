@@ -98,4 +98,3 @@ class CleanUpString:
         return value
 
 
-

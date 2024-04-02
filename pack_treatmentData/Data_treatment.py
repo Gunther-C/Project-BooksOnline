@@ -296,12 +296,10 @@ class DataTreatment:
 
                             for prd in products:
                                 link = prd.find('h3').find('a')['href']
-                                # prd_name = product.string.strip()
                                 if not link:
                                     Ers.ErrorsTreatment("data_treatment_14")
                                     break
                                 else:
-                                    # self.comparator_text(prd_name)
                                     new_path = self.Clean_str.CleanUpString().cleanup_link(link)
                                     prd_link: str = self.path + 'catalogue/' + new_path
                                     self.treatment_product(prd_link)

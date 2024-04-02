@@ -8,7 +8,6 @@ class FrenchDate:
         array_month_fr = (
             'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre',
             'Décembre')
-
         locale.setlocale(locale.LC_TIME, 'fr_FR')
         current_date = datetime.datetime.now()
 
