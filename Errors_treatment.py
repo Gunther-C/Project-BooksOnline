@@ -85,6 +85,15 @@ class ErrorsTreatment:
             case "data_treatment_17":
                 print(f"Le produit n'a pas été identifiée")
 
+            case "data_treatment_18":
+                print(f"Erreur création : {self.text}")
+
+            case "data_treatment_19":
+                print(f"Erreur création : {self.text}")
+
+            case "data_treatment_20":
+                print(f"Le nom ({self.text}) ne correspond à aucun produit")
+
             case "folder_create-1":
                 print(f"Pas d'url pour la création du dossier")
 

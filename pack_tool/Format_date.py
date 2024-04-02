@@ -14,7 +14,7 @@ class FrenchDate:
 
         today_fr = str(current_date.date().day)
         month_fr = current_date.date().month
-        month_fr = array_month_fr[month_fr + 1]
+        month_fr = array_month_fr[month_fr - 1]
         year_fr = str(current_date.date().year)
 
         self.format_fr = today_fr + '-' + month_fr + '-' + year_fr

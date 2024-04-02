@@ -23,14 +23,14 @@ from pack_treatmentData import Data_treatment
     ( * ) =>
     
         Pour les produits =>
-            - Le titre uniquement sans son complément (avant ':' ou ',' )
+            - Inutile de mettre plus que les 4 premiers mots du titre
             - Dans tous les cas ne pas renseigner les parenthèses et leur contenu   
 """
 
 
 def main():
 
-    Data_treatment.DataTreatment("product_N")
+    Data_treatment.DataTreatment("product_N", 'The Coming Woman: A ...')
 
 
 if __name__ == '__main__':

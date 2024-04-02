@@ -1,3 +1,5 @@
+import re
+
 
 class CleanUpString:
     def __init__(self) -> None:
@@ -5,7 +7,7 @@ class CleanUpString:
 
     def cleaner_folder_name(self, value):
 
-        folder_name_format = ['/', '\\', '|', '*', '"', '?', '<', '>']
+        folder_name_format = ['/', '\\', '|', '*', '"', '?', '<', '>', ',']
 
         for oc in folder_name_format:
             if oc == '/':
@@ -13,23 +15,17 @@ class CleanUpString:
             else:
                 value = value.replace(oc, '')
 
-        bracket_before = value.find('(')
-        bracket_after = value.find(')')
-        if bracket_before != -1:
-            text_before = value[:bracket_before]
-            if bracket_after != -1:
-                text_after = value[bracket_after + 1:]
-                value = text_before + text_after
-
+        value = str(self.bracket_treatment(value))
         count_text = len(value)
 
         db_point = value.find(': ')
         if db_point != -1:
             db_before = value[:db_point]
             db_after = value[db_point + 2:]
+            # db_after = db_after.replace(':', '')
 
             if len(db_before) > 30:
-                value = db_before.strip().replace(' ', '_')
+                value = db_before.strip().replace(' ', '_') + '.etc'
             else:
                 if len(db_after) > 20:
                     for x in reversed(range(2, 5)):
@@ -53,6 +49,7 @@ class CleanUpString:
         else:
             value = value.strip().replace(' ', '_')
 
+        value = value.replace(':', '-').replace('...', '.etc')
         return value
 
     def cleanup_link(self, new_path):
@@ -63,3 +60,42 @@ class CleanUpString:
                 new_path = new_path[index:]
                 break
         return new_path
+
+    def cleaner_order_text_csv(self, text, count_line):
+        descr_long = len(text)
+        array_line = []
+        text = text.replace(',', ';').strip()
+
+        if descr_long > count_line:
+
+            for u in range(descr_long):
+                if len(text) > count_line:
+                    line = text[:count_line]
+                    rest = text[count_line:].strip()
+
+                    last = line.rfind(" ")
+                    new_line = line[:last].strip()
+                    rest_line = line[last:].strip()
+                    array_line.append(f"{new_line}\n")
+                    text = rest_line + rest
+                else:
+                    text = text.strip()
+                    array_line.append(f"{text}")
+                    break
+        else:
+            array_line.append(f"{text}")
+
+        return "".join(array_line)
+
+    def bracket_treatment(self, value):
+        bracket_before = value.find('(')
+        bracket_after = value.rfind(')')
+        if bracket_before != -1:
+            text_before = value[:bracket_before]
+            if bracket_after != -1:
+                text_after = value[bracket_after + 1:]
+                value = text_before + text_after
+        return value
+
+
+
