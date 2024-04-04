@@ -1,8 +1,6 @@
 class ErrorsTreatment:
     def __init__(self, error_type: str = "NoError", supp_text: any = None):
 
-        # rtype: str | None
-
         self.type = error_type
         self.text = supp_text
         self.__str__()
@@ -35,7 +33,7 @@ class ErrorsTreatment:
                 print(f"Échec lecture de la page")
 
             case "data_treatment_1":
-                print(f"Rentrez un valeur")
+                print(f"Rentrez une valeur")
 
             case "data_treatment_2":
                 print(f"Le chemin du site n'est pas reconnu")
