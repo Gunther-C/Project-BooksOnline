@@ -2,8 +2,8 @@ import re
 
 
 class CleanUpString:
-    def __init__(self) -> None:
-        self.new_string: str = ""
+    # def __init__(self) -> None:
+
 
     def cleaner_folder_name(self, value):
 
@@ -97,4 +97,17 @@ class CleanUpString:
                 value = text_before + text_after
         return value
 
+    def comparator_text(self, value):
+        value = str(value)
+        value.strip()
+        index = value.find('(')
+        new_text = value[:index]
+        new_text = new_text.replace(' ', '')
+        new_text = new_text.lower()
+        new_text = re.search(r"[a-zA-Z]+", new_text)
+        if new_text:
+            new_text = new_text.group()
+        else:
+            new_text = value
+        return new_text
 

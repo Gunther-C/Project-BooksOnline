@@ -15,21 +15,14 @@ class FileTreatmentCsv:
 
     def treatment(self):
         try:
-            # open(self.data['path'], 'r') as infile,
             with open(self.data['path'], self.data['action'], encoding="utf-8-sig", newline="") as file:
                 writer = csv.writer(file, delimiter=",", dialect="excel", lineterminator="\n")
                 try:
 
                     if self.data['action'] == 'w':
-                        writer.writerow(["Descriptions", "Titres", "Liens", "Description", "Code",
+                        writer.writerow(["Catégorie", "Titre", "Lien", "Description", "Code",
                                          "Prix Ht", "Dev.", "Prix Ttc", "Dev.", "Stock", "Evaluation",
                                          "Lien photo"])
-
-                    if self.data['description'] == 'Categorie' and self.data['action'] == 'a':
-                        writer.writerow("")
-
-                    if self.data['description'] and self.data['prt_name'] and self.data['prt_lien']:
-                        writer.writerow([self.data['description'], self.data['prt_name'], self.data['prt_lien']])
 
                     if self.data['prd_data']:
                         writer.writerow(self.data['prd_data'])

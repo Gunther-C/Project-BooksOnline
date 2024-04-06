@@ -11,7 +11,6 @@ Récupérer des infos sur https://books.toscrape.com/ puis les stocker par class
 - Catégories et ses produits
 - Produit
 
-
 ### Type de récupération :
 #### Données de l'article
     1. Code 
@@ -27,10 +26,114 @@ Récupérer des infos sur https://books.toscrape.com/ puis les stocker par class
 #### Objet de l'article
     1. Photo  
 
-##
+#
 ## Installation  
+####
+**_Sous Windows (voir bas de page)_** :
+####
+### Python 3.12.2 =>  
+####
+_Téléchargement de Python_ :  
+Rendez-vous sur la page de téléchargement officielle de Python : Télécharger Python1.
+Choisissez la version de Python que vous souhaitez installer (par exemple, Python 3.12.2).
+Sélectionnez votre système d’exploitation (Windows, Linux/UNIX, macOS, ou autre).
+Cliquez sur le lien de téléchargement correspondant.
+####
+_Installation de Python_ :  
+Une fois le téléchargement terminé, exécutez le fichier d’installation.
+Suivez les instructions à l’écran pour installer Python sur votre système.
+Assurez-vous d’ajouter Python à votre chemin d’accès système (cochez la case “Add Python to PATH” lors de l’installation sur Windows).
+####
+_Vérification de l’installation, Ouvrez **_votre terminal_** et Tapez :_  
+ 
+        python --version 
+et appuyez sur Entrée. Vous devriez voir la version de Python installée **_" Python 3.12.2. ou plus "_**  
 
-**_Pour Windows installé Cyguin_** :
+#
+## Installation du projet sur votre machine 
+####
+### Récuperer le dossier du projet =>
+_Clone du projet_ :
+####
+```bash
+  git clone https://github.com/Gunther-C/Project-BooksOnline.git
+```
+![Capture d'écran 2024-04](https://github.com/Gunther-C/Dossier-Zip/assets/162619333/cb69695d-ba93-42e9-a087-f860da3ea53d)
+###
+### Installer l'environement virtuel =>
+    > Décompresser le dossier sur votre bureau
+    > Ensuite ouvrez Cyguin
+####
+Aller dans le dossier répertoire du projet / Créer l'environment / activer :  
+
+        cd < Le nom du dossier >
+
+    (Le Chemin doit comporter le nom du dossier)
+####
+_(Créer l'environment)_  
+
+        python -m venv env
+####
+_(Activer)_  
+
+        env\Scripts\activate.bat
+
+    Avec PowerShell et Cyguin (Activate avec une majuscule):
+        source env/Scripts/Activate
+
+    Sinon : 
+        source env/bin/activate
+
+_Vous trouverez plus d'informations sur le site de [Stackoverflow](https://stackoverflow.com/questions/18713086/virtualenv-wont-activate-on-windows/18713789#18713789)._  
+####
+_(Résultat)_  
+1. (env) doit apparaitre  
+    _(env) /cygdrive/c/Users/(nom utilisateur)/desktop/(nom du dossier Project-Books...)$_
+2. Tapper la commande " _pip freeze_ " , pip doit ètre vide
+###
+### Installation des modules complémentaires =>
+####
+**_Vérifier la version de pip "pip24.0"_**
+
+        pip --version 
+
+    (Mettre a jour si besoin)        
+
+        pip install --upgrade pip24.0  
+
+###
+**_Installer les modules nécessaires_**  
+
+        pip install -r requirements.txt
+
+        (Vérifiez avec "pip freeze")
+
+(N’oubliez pas que pour les utilisateurs POSIX (comme Mac OS X et Linux), il est recommandé d’utiliser un environnement virtuel pour gérer vos projets Python.)  
+##
+## _Exemples_ ( Fichier main.py )
+_Mettez-vous dans le dossier du "Project" puis tapper_ :
+
+        python main.py
+###
+**_Toutes les catégories et leurs produits_**
+
+        Arg_1 = directory_N
+**_Une catégorie et ses produits_**
+
+        Arg_1 = category_N (recherche aléatoire)
+        ou
+        Arg_1 = category_N,  Arg_2 = <nom de la catégorie>
+**_Un produit_**
+
+        Arg_1 = product_N (recherche aléatoire)
+        ou
+        Arg_1 = product_N,  Arg_2 = <nom du produit>
+ 
+- **Inutile de mettre plus que les 4 premiers mots d'un produit'**  
+- **Dans tous les cas ne pas renseigner les parenthèses et leur contenu**  
+#
+#
+**_Sous Windows, vous pouvez installer Cyguin_** :
 ### Cyguin =>  
 ####
 Cygwin est idéal pour les tests et le développement, car il permet d’utiliser les utilitaires UNIX/Linux sur Windows , il est compatible avec les anciennes versions de Windows, contrairement à l’environnement WSL proposé par Windows,  
@@ -54,136 +157,6 @@ Une invite vous permettra de sélectionner une source de téléchargement. Dans 
         Ouvré le fichier " .bash_profile " avec notPad ou autre -> 
         En bas de page taper "cd /cygdrive/c/Users/<le nom de votre dossier utilisateur>/desktop/" ->
         Enregistré
-
-#
-### Python 3.12.2 =>  
-####
-_Téléchargement de Python_ :  
-Rendez-vous sur la page de téléchargement officielle de Python : Télécharger Python1.
-Choisissez la version de Python que vous souhaitez installer (par exemple, Python 3.12.2).
-Sélectionnez votre système d’exploitation (Windows, Linux/UNIX, macOS, ou autre).
-Cliquez sur le lien de téléchargement correspondant.
-####
-_Installation de Python_ :  
-Une fois le téléchargement terminé, exécutez le fichier d’installation.
-Suivez les instructions à l’écran pour installer Python sur votre système.
-Assurez-vous d’ajouter Python à votre chemin d’accès système (cochez la case “Add Python to PATH” lors de l’installation sur Windows).
-####
-_Vérification de l’installation, Ouvrez **_Cyguin_** et Tapez :_  
- 
-        python --version 
-et appuyez sur Entrée. Vous devriez voir la version de Python installée **_" Python 3.12.2. ou plus "_**  
-
-##
-## Installation du projet sur votre machine 
-###
-### Récuperer le dossier du projet =>
-_Cloner le projet_ :
-####
-```bash
-  git clone https://github.com/Gunther-C/Project-BooksOnline.git
-```
-ou
-
-_Télécharger le dossier zip_ :
-
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-
-
-###
-### Installer l'environement virtuel =>
-    > Décompresser le dossier sur votre bureau
-    > Ensuite ouvrez Cyguin
-
-###
-Aller dans le dossier répertoire du projet / Créer l'environment / Vérifier / activer :  
-
-        cd < Le nom du dossier >
-        (Le Chemin doit comporter le nom du dossier)
-###
-_(Créer l'environment)_  
-
-        python -m venv env
-###
-_(Vérifiez)_
-
-        ls
-        (Le dossier "env" doit apparaitre)  
-###
-_(Activer)_  
-
-        env\Scripts\activate.bat
-
-    Avec PowerShell et Cyguin (Activate avec une majuscule):
-        source env/Scripts/Activate
-
-    Sinon : 
-        source env/bin/activate
-
-
-(_Vous trouverez plus d'informations sur le site de [Stackoverflow](https://stackoverflow.com/questions/18713086/virtualenv-wont-activate-on-windows/18713789#18713789)._)  
-###
-_(Résultat)_  
-1. (env) doit apparaitre  
-    _(env) /cygdrive/c/Users/(nom utilisateur)/desktop/(nom du dossier Project-Books...)$_
-2. Tapper la commande " _pip freeze_ " , pip doit ètre vide
-
-
-###
-### Installation des modules complémentaires =>
-####
-**_Vérifier la version de pip "pip24.0"_**
-
-        pip --version (ou) pip show pip
-(_Mettre la version pip a jour si besoin_)        
-
-        pip install --upgrade pip24.0  
-        (ou)  
-        pip install --upgrade pip (pour la dernière version)
-###
-**_Installer les modules nécessaires_**  
-
-        pip install requests
-        pip install beautifulsoup4
-
-
-(N’oubliez pas que pour les utilisateurs POSIX (comme Mac OS X et Linux), il est recommandé d’utiliser un environnement virtuel pour gérer vos projets Python.)  
-###
-**_Terminer en vérifiant que tout est bon avec un_**  
-
-        pip list (ou) pip freeze
-
-
-##
-## _Exemples_ : ( Fichier main.py )
-
-
-
-_Mettez-vous dans le dossier du "Project" puis tapper_ :
-
-        python main.py
-
-
-###
-**_Toutes les catégories et leurs produits_**
-
-        Arg_1 = directory_N
-
-**_Une catégorie et ses produits_**
-
-        Arg_1 = category_N (recherche aléatoire)
-        ou
-        Arg_1 = category_N,  Arg_2 = <nom de la catégorie>
-
-**_Un produit_**
-
-        Arg_1 = product_N (recherche aléatoire)
-        ou
-        Arg_1 = product_N,  Arg_2 = <nom du produit>
-
- 
-- **Inutile de mettre plus que les 4 premiers mots d'un produit'**  
-- **Dans tous les cas ne pas renseigner les parenthèses et leur contenu**  
 
 ##
 ##
