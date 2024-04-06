@@ -1,6 +1,5 @@
 
 # Project_BooksOnline
-
 ### **_Scraping on books.toscrape_**
 Récupérer des infos sur https://books.toscrape.com/ puis les stocker par classifications, dossiers, fichiers.csv
 ##

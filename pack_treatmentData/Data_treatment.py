@@ -160,7 +160,6 @@ class DataTreatment:
 
                 self.catg_name = catg_name.replace(',', '')
                 self.treatment_category(catg_link)
-
             else:
                 Ers.ErrorsTreatment("data_treatment_12")
 

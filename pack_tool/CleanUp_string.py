@@ -109,4 +109,3 @@ class CleanUpString:
         else:
             new_text = value
         return new_text
-

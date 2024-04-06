@@ -18,7 +18,6 @@ class FileTreatmentCsv:
             with open(self.data['path'], self.data['action'], encoding="utf-8-sig", newline="") as file:
                 writer = csv.writer(file, delimiter=",", dialect="excel", lineterminator="\n")
                 try:
-
                     if self.data['action'] == 'w':
                         writer.writerow(["Catégorie", "Titre", "Lien", "Description", "Code",
                                          "Prix Ht", "Dev.", "Prix Ttc", "Dev.", "Stock", "Evaluation",
@@ -30,9 +29,7 @@ class FileTreatmentCsv:
                     self.result = True
                 except csv.Error as e:
                     sys.exit('file {}, line {}: {}'.format(filename, reader.line_num, e))
-
         except IOError as er:
             print("Erreur lors de l'ouverture du fichier :", er)
-
         except UnicodeEncodeError as err:
             print("Erreur D'encodage :", err)
