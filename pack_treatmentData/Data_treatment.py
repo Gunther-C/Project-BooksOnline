@@ -29,8 +29,6 @@ class DataTreatment:
             self.catg_folder = None
             self.catg_link = None
 
-            # self.comparator_text(self.name)
-
             if not self.page.index:
                 Ers.ErrorsTreatment("data_treatment_2")
             else:
@@ -40,36 +38,27 @@ class DataTreatment:
                 else:
                     self.data_dom()
 
-    # ___
-
     def data_dom(self):
 
         self.content_catg = self.dom.find("ul", class_="nav-list").find('ul').find_all("li")
 
         if self.content_catg:
-
             if self.choice == 'directory_N':
                 self.data_directory()
-
             elif self.choice == 'category_N':
                 if self.name:
                     self.data_category()
                 else:
                     self.data_category_rand()
-
             elif self.choice == 'product_N':
                 if self.name:
                     self.data_product()
                 else:
                     self.data_category_rand()
-
             else:
                 Ers.ErrorsTreatment("data_treatment_4")
-
         else:
             Ers.ErrorsTreatment("data_treatment_5")
-
-    # ___
 
     def data_directory(self):
         title_st = self.dom.find("header", {'class': 'header'}).find('a').string.strip()
@@ -85,16 +74,12 @@ class DataTreatment:
             data: dict[str, str] = {
                 'action': 'w',
                 'path': str(self.site_folder + '/Site.csv'),
-                'description': 'Site',
-                'prt_name': title_st,
-                'prt_lien':  self.path,
                 'prd_data': ''
             }
 
             if not File_csv.FileTreatmentCsv(data).result:
                 Ers.ErrorsTreatment("data_treatment_18", 'Fichier Site => ' + title_st)
             else:
-
                 for li in self.content_catg:
                     element = li.find('a')
                     catg_link: str = self.path + element['href']
@@ -113,8 +98,6 @@ class DataTreatment:
 
                             self.treatment_category(catg_link)
                         time.sleep(1)
-
-    # ___
 
     def data_category(self):
         result_name = False
@@ -146,9 +129,6 @@ class DataTreatment:
             Ers.ErrorsTreatment("data_treatment_10")
         else:
             pass
-
-
-    # ___
 
     def data_category_rand(self):
         array_title = []
@@ -184,8 +164,6 @@ class DataTreatment:
             else:
                 Ers.ErrorsTreatment("data_treatment_12")
 
-    # ___
-
     def data_product(self):
         products = self.dom.find("ul", class_="nav-list").find("li").find('a')
         catg_link: str = self.path + products['href']
@@ -194,8 +172,6 @@ class DataTreatment:
             Ers.ErrorsTreatment("data_treatment_10", 'tous produits')
         else:
             self.treatment_category(catg_link)
-
-    # ___
 
     def treatment_category(self, catg_link: any) -> None:
 
@@ -207,23 +183,14 @@ class DataTreatment:
         else:
             self.catg_link = catg_link
 
-            dir_data: dict[str, str] = {
-                'action': '',
-                'path': '',
-                'description': 'Categorie',
-                'prt_name': self.catg_name,
-                'prt_lien': self.catg_link,
-                'prd_data': ''
-            }
+            dir_data: dict[str, str] = {'action': '', 'path': '', 'prd_data': ''}
 
             if self.choice != 'product_N':
-
                 dir_data['action'] = 'w'
                 dir_data['path'] = str(self.catg_folder + '/Catg_' + self.catg_title + '.csv')
                 if not File_csv.FileTreatmentCsv(dir_data).result:
                     Ers.ErrorsTreatment("data_treatment_18",
                                         'Fichier Catégorie => ' + self.catg_title)
-
                 if self.choice == 'directory_N':
                     dir_data['action'] = 'a'
                     dir_data['path'] = str(self.site_folder + '/Site.csv')
@@ -233,7 +200,6 @@ class DataTreatment:
 
             array_prd = []
             search_name = False
-            search = False
             other_page = self.dom.find('ul', class_='pager')
             if not other_page:
                 products = self.dom.find_all('article', class_='product_pod')
@@ -261,7 +227,7 @@ class DataTreatment:
                 count_page = int(count_page[index_count + 2:])
 
                 for i in range(count_page):
-                    # on laisse passer la page courant
+                    # on laisse passer la page courante
                     if i > 0:
                         index_catg = catg_link.find('index.html')
                         url_catg = catg_link[:index_catg]
@@ -281,8 +247,8 @@ class DataTreatment:
                                 if self.name:
                                     link = prd.find('h3').find('a')['href']
                                     name = prd.find('h3').find('a').string.strip()
-                                    name = self.comparator_text(name)
-                                    input_name = self.comparator_text(self.name)
+                                    name = Clean_str.CleanUpString().comparator_text(name)
+                                    input_name = Clean_str.CleanUpString().comparator_text(self.name)
                                     if str(name) == str(input_name):
                                         search_name = True
                                         array_prd.append(link)
@@ -323,8 +289,6 @@ class DataTreatment:
                     self.treatment_product(prd_link)
                     time.sleep(1)
 
-    # ___
-
     def treatment_product(self, prd_link=None):
 
         if not prd_link:
@@ -351,20 +315,15 @@ class DataTreatment:
                     if Folder.FolderCreate(prd_folder).error_folder:
                         Ers.ErrorsTreatment("data_treatment_18", title_product)
                     else:
-
                         title = title_prd.replace(',', '-')
 
                         description = product.find_all('p')[3].string
                         if description:
-                            new_text = self.Clean_str.CleanUpString().cleaner_order_text_csv(description, 300)
-                            if new_text:
-                                description = new_text
-                            else:
-                                description = description.replace(',', ';')
+                            description = description.replace(',', ';')
                         else:
                             description = ""
 
-                        data_product = ["Produit", title, prd_link, description]
+                        data_product = [self.catg_name, title, prd_link, description]
 
                         infos_product = product.find('table', class_='table-striped').find_all('tr')
                         for infos in infos_product:
@@ -375,7 +334,7 @@ class DataTreatment:
                                 key = key.strip()
                                 val = val.strip()
 
-                                if key != 'Product Type' and key != 'Tax':
+                                if key != 'Product Type' and key != 'Tax' and key != 'Number of reviews':
 
                                     if key == 'Price (excl. tax)' or key == 'Price (incl. tax)':
                                         devise = val[:1]
@@ -395,6 +354,14 @@ class DataTreatment:
                                 val = ""
                                 data_product.append(val)
 
+                        dir_eval = {'One': '1 étoile', 'Two': 'Deux étoiles', 'Three': '3 étoiles',
+                                    'Four': '4 étoiles', 'Five': '5 étoiles'}
+                        evaluation = product.find('p', class_='star-rating')['class']
+                        nbr = evaluation[1].strip()
+                        for ev in dir_eval:
+                            if ev == nbr:
+                                data_product.append(dir_eval[ev])
+
                         img = product.find('img')['src']
                         new_path = self.Clean_str.CleanUpString().cleanup_link(img)
                         img_link = self.path + new_path
@@ -403,9 +370,6 @@ class DataTreatment:
                         dir_data: dict[str, str] = {
                             'action': '',
                             'path': '',
-                            'description': '',
-                            'prt_name': '',
-                            'prt_lien': '',
                             'prd_data': data_product
                         }
 
@@ -425,9 +389,6 @@ class DataTreatment:
 
                         dir_data['action'] = 'w'
                         dir_data['path'] = str(prd_folder + '/' + title_product + '.csv')
-                        dir_data['description'] = 'Categorie'
-                        dir_data['prt_name'] = self.catg_name
-                        dir_data['prt_lien'] = self.catg_link
                         if not File_csv.FileTreatmentCsv(dir_data).result:
                             Ers.ErrorsTreatment("data_treatment_18",
                                                 'Fichier Catégorie => ' + self.catg_name + 'Fichier Produit => '
@@ -445,15 +406,3 @@ class DataTreatment:
 
                         print(title_product)
 
-    def comparator_text(self, value):
-        value = str(value)
-        value.strip()
-        index = value.find('(')
-        new_text = value[:index]
-        new_text = new_text.replace(' ', '')
-        new_text = re.search(r"[a-zA-Z]+", new_text)
-        if new_text:
-            new_text = new_text.group()
-        else:
-            new_text = value
-        return new_text
