@@ -47,7 +47,7 @@ Assurez-vous d’ajouter Python à votre chemin d’accès système (cochez la c
 _Vérification de l’installation, Ouvrez **_votre terminal_** et Tapez :_  
  
         python --version 
-et appuyez sur Entrée. Vous devriez voir la version de Python installée **_" Python 3.12.2. ou plus "_**  
+Et appuyez sur Entrée. Vous devriez voir la version de Python installée **_" Python 3.12.2. Ou plus "_**  
 
 #
 ## Installation du projet sur votre machine 
@@ -136,7 +136,7 @@ _Mettez-vous dans le dossier du "Project" puis tapper_ :
 **_Sous Windows, vous pouvez installer Cyguin_** :
 ### Cyguin =>  
 ####
-Cygwin est idéal pour les tests et le développement, car il permet d’utiliser les utilitaires UNIX/Linux sur Windows , il est compatible avec les anciennes versions de Windows, contrairement à l’environnement WSL proposé par Windows,  
+Cygwin est idéal pour les tests et le développement, car il permet d’utiliser les utilitaires UNIX/Linux sur Windows, il est compatible avec les anciennes versions de Windows, contrairement à l’environnement WSL proposé par Windows,  
 ####
 _Téléchargement_ :  
 Rendez-vous sur le site officiel de Cygwin.
