@@ -12,7 +12,7 @@ Récupérer des infos sur https://books.toscrape.com/ puis les stocker par class
 
 ### Type de récupération :
 #### Données de l'article
-    1. Code 
+    1. Code  
     2. Lien 
     3. Catégorie
     4. Nom
