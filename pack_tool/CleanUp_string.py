@@ -4,7 +4,6 @@ import re
 class CleanUpString:
     # def __init__(self) -> None:
 
-
     def cleaner_folder_name(self, value):
 
         folder_name_format = ['/', '\\', '|', '*', '"', '?', '<', '>', ',']
