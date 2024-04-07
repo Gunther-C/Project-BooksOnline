@@ -1,3 +1,2 @@
+pack_stock/
 .venv/
-pack_stock/*
-pack_stock/!__init__.py
