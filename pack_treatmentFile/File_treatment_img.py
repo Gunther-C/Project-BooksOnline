@@ -1,7 +1,6 @@
 import requests
 
 
-
 class FileTreatmentImg:
 
     def __init__(self, data):

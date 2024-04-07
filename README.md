@@ -98,7 +98,6 @@ _(Résultat)_
     (Mettre a jour si besoin)        
 
         pip install --upgrade pip24.0  
-
 ###
 **_Installer les modules nécessaires_**  
 

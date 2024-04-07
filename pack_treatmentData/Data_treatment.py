@@ -328,7 +328,6 @@ class DataTreatment:
                         for infos in infos_product:
                             key = infos.find('th').string
                             val = infos.find('td').string
-
                             if key and val:
                                 key = key.strip()
                                 val = val.strip()

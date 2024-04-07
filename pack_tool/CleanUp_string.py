@@ -66,7 +66,6 @@ class CleanUpString:
         text = text.replace(',', ';').strip()
 
         if descr_long > count_line:
-
             for u in range(descr_long):
                 if len(text) > count_line:
                     line = text[:count_line]
