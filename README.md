@@ -11,11 +11,11 @@ Récupérer des infos sur https://books.toscrape.com/ puis les stocker par class
 
 ### Type de récupération :
 #### Données de l'article
-    1. Code  
-    2. Lien 
-    3. Catégorie
-    4. Nom
-    5. Descriptif 
+    1. Catégorie 
+    2. Nom 
+    3. Lien 
+    4. Descriptif 
+    5. Code   
     6. Prix HT
     7. Prix TTC
     8. Evaluation
