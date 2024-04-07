@@ -15,12 +15,12 @@ class DataRecovery:
     def request_path(self):
         control = url_control.UrlControl(self.url)
         if not control:
-            Ers.ErrorsTreatment("data_recovery1", self.url)
+            Ers.ErrorsTreatment("data_recovery", self.url)
 
         else:
             page = url_requestPage.Request(self.url)
             if not page.result:
-                Ers.ErrorsTreatment("data_recovery2", self.url)
+                Ers.ErrorsTreatment("data_recovery", self.url)
             else:
                 self.index = page.newpage
 
