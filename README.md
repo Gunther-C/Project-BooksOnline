@@ -11,11 +11,11 @@ Récupérer des infos sur https://books.toscrape.com/ puis les stocker par class
 
 ### Type de récupération :
 #### Données de l'article
-    1. Code  
-    2. Lien 
-    3. Catégorie
-    4. Nom
-    5. Descriptif 
+    1. Catégorie 
+    2. Nom 
+    3. Lien 
+    4. Descriptif 
+    5. Code   
     6. Prix HT
     7. Prix TTC
     8. Evaluation
@@ -27,7 +27,7 @@ Récupérer des infos sur https://books.toscrape.com/ puis les stocker par class
 #
 ## Installation  
 ####
-**_Sous Windows (voir bas de page)_** :
+**_Sous Windows (option bas de page)_** :
 ####
 ### Python 3.12.2 =>  
 ####
@@ -60,7 +60,7 @@ _Clone du projet_ :
 ###
 ### Installer l'environement virtuel =>
     > Décompresser le dossier sur votre bureau
-    > Ensuite ouvrez Cyguin
+    > Ensuite ouvrez votre terminal
 ####
 Aller dans le dossier répertoire du projet / Créer l'environment / activer :  
 
@@ -107,7 +107,7 @@ _(Résultat)_
         (Vérifiez avec "pip freeze")
 
 (N’oubliez pas que pour les utilisateurs POSIX (comme Mac OS X et Linux), il est recommandé d’utiliser un environnement virtuel pour gérer vos projets Python.)  
-##
+#
 ## _Exemples_ ( Fichier main.py )
 _Mettez-vous dans le dossier du "Project" puis tapper_ :
 
@@ -132,7 +132,6 @@ _Mettez-vous dans le dossier du "Project" puis tapper_ :
 #
 #
 **_Sous Windows, vous pouvez installer Cyguin_** :
-### Cyguin =>  
 ####
 Cygwin est idéal pour les tests et le développement, car il permet d’utiliser les utilitaires UNIX/Linux sur Windows, il est compatible avec les anciennes versions de Windows, contrairement à l’environnement WSL proposé par Windows,  
 ####
