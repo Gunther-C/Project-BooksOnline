@@ -109,5 +109,9 @@ class CleanUpString:
             new_text = new_text.group()
         else:
             new_text = value
+
+        if len(new_text) > 20:
+            new_text = new_text[:20]
+
         return new_text
 

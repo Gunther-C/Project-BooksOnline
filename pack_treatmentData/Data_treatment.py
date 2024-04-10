@@ -352,8 +352,8 @@ class DataTreatment:
                                 val = ""
                                 data_product.append(val)
 
-                        dir_eval = {'One': '1 étoile', 'Two': 'Deux étoiles', 'Three': '3 étoiles',
-                                    'Four': '4 étoiles', 'Five': '5 étoiles'}
+                        dir_eval = {'One': '*', 'Two': '* *', 'Three': '* * *',
+                                    'Four': '* * * *', 'Five': '* * * * *'}
                         evaluation = product.find('p', class_='star-rating')['class']
                         nbr = evaluation[1].strip()
                         for ev in dir_eval:
