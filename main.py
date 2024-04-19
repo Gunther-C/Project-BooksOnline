@@ -1,10 +1,6 @@
 from pack_treatmentData import Data_treatment
 
-"""
-def main():
-    Data_treatment.DataTreatment("product_N", 'The Coming Woman: A ...')
-main()
-"""
+
 if __name__ == '__main__':
 
     print(" Arg_1 =>  Obligatoire \n"

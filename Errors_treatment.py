@@ -17,6 +17,7 @@ class ErrorsTreatment:
                     print(f"Échec de la connexion à l'URL {self.text[0]}: {self.text[1]}")
                 else:
                     print(f"Échec de la connexion à l'URL")
+
             case "request_1":
                 print(f"Échec de connexion: {self.text}")
 

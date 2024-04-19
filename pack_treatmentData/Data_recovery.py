@@ -1,4 +1,4 @@
-from pack_treatmentUrl import url_control, url_requestPage
+from pack_treatmentUrl import Url_control, Url_requestPage
 import Errors_treatment as Ers
 
 
@@ -13,12 +13,12 @@ class DataRecovery:
             self.request_path()
 
     def request_path(self):
-        control = url_control.UrlControl(self.url)
+        control = Url_control.UrlControl(self.url)
         if not control:
             Ers.ErrorsTreatment("data_recovery", self.url)
 
         else:
-            page = url_requestPage.Request(self.url)
+            page = Url_requestPage.Request(self.url)
             if not page.result:
                 Ers.ErrorsTreatment("data_recovery", self.url)
             else:

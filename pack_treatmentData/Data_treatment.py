@@ -3,7 +3,9 @@ from pack_treatmentData import Data_recovery as Recovery
 from pack_tool import Format_date as Fd, CleanUp_string as Clean_str, Folder_create as Folder
 from pack_treatmentFile import File_treatment_csv as File_csv, File_treatment_img as File_img
 import Errors_treatment as Ers
-import random, time, re
+import random
+import time
+import re
 
 
 class DataTreatment:
@@ -17,7 +19,10 @@ class DataTreatment:
             if name:
                 self.name = name.strip()
             self.choice = choice.strip()
+
+            # LA PAGE VIA LE MODULE REQUEST
             self.page = Recovery.DataRecovery("https://books.toscrape.com/index.html")
+
             self.path = str("https://books.toscrape.com/")
             self.date_fr = Fd.FrenchDate().format_fr
             self.Clean_str = Clean_str
@@ -38,27 +43,40 @@ class DataTreatment:
                 else:
                     self.data_dom()
 
+
+
+
+    # PHASE DU CHOIX
     def data_dom(self):
 
+        # LA RECHERCHE EST BASEE SUR LA LISTE DES CATEGORIES PAGE D'ACCUEIL DU SITE
         self.content_catg = self.dom.find("ul", class_="nav-list").find('ul').find_all("li")
 
         if self.content_catg:
+
             if self.choice == 'directory_N':
                 self.data_directory()
+
             elif self.choice == 'category_N':
                 if self.name:
                     self.data_category()
                 else:
                     self.data_category_rand()
+
             elif self.choice == 'product_N':
                 if self.name:
                     self.data_product()
                 else:
                     self.data_category_rand()
+
             else:
                 Ers.ErrorsTreatment("data_treatment_4")
+
         else:
             Ers.ErrorsTreatment("data_treatment_5")
+
+
+
 
     def data_directory(self):
         title_st = self.dom.find("header", {'class': 'header'}).find('a').string.strip()
@@ -94,9 +112,10 @@ class DataTreatment:
                         if Folder.FolderCreate(self.catg_folder).error_folder:
                             Ers.ErrorsTreatment("data_treatment_8", catg_name)
                             continue
-                        else:
 
+                        else:
                             self.treatment_category(catg_link)
+
                         time.sleep(1)
 
     def data_category(self):
@@ -172,6 +191,10 @@ class DataTreatment:
         else:
             self.treatment_category(catg_link)
 
+
+
+
+
     def treatment_category(self, catg_link: any) -> None:
 
         self.page = Recovery.DataRecovery(catg_link)
@@ -184,18 +207,12 @@ class DataTreatment:
 
             dir_data: dict[str, str] = {'action': '', 'path': '', 'prd_data': ''}
 
-            if self.choice != 'product_N':
+            if self.choice == 'category_N':
                 dir_data['action'] = 'w'
                 dir_data['path'] = str(self.catg_folder + '/Catg_' + self.catg_title + '.csv')
                 if not File_csv.FileTreatmentCsv(dir_data).result:
                     Ers.ErrorsTreatment("data_treatment_18",
                                         'Fichier Catégorie => ' + self.catg_title)
-                if self.choice == 'directory_N':
-                    dir_data['action'] = 'a'
-                    dir_data['path'] = str(self.site_folder + '/Site.csv')
-                    if not File_csv.FileTreatmentCsv(dir_data).result:
-                        Ers.ErrorsTreatment("data_treatment_18",
-                                            'Fichier Site => Catégorie => ' + self.catg_title)
 
             array_prd = []
             search_name = False
@@ -203,6 +220,7 @@ class DataTreatment:
             if not other_page:
                 products = self.dom.find_all('article', class_='product_pod')
 
+                # Produit Aléatoire
                 if not self.name and self.choice == 'product_N':
                     for prd in products:
                         link = prd.find('h3').find('a')['href']
@@ -230,8 +248,10 @@ class DataTreatment:
                     if i > 0:
                         index_catg = catg_link.find('index.html')
                         url_catg = catg_link[:index_catg]
+
                         nbr_page = i + 1
                         extend_path = 'page-' + str(nbr_page) + '.html'
+
                         next_path = url_catg + extend_path
                         self.page = Recovery.DataRecovery(next_path)
                         self.dom = BeautifulSoup(self.page.index, 'html.parser')
@@ -255,6 +275,7 @@ class DataTreatment:
                                     else:
                                         continue
                                 else:
+                                    # Recherche aléatoire
                                     link = prd.find('h3').find('a')['href']
                                     array_prd.append(link)
                         else:
@@ -279,14 +300,16 @@ class DataTreatment:
                 elif array_prd:
                     link = random.choice(array_prd)
                 else:
+                    # Pas de correspondance
                     Ers.ErrorsTreatment("data_treatment_20")
+
                 if not link:
                     Ers.ErrorsTreatment("data_treatment_14")
                 else:
                     new_path = self.Clean_str.CleanUpString().cleanup_link(link)
                     prd_link: str = self.path + 'catalogue/' + new_path
                     self.treatment_product(prd_link)
-                    time.sleep(1)
+                    # time.sleep(1)
 
     def treatment_product(self, prd_link=None):
 
@@ -360,7 +383,7 @@ class DataTreatment:
                             if ev == nbr:
                                 data_product.append(dir_eval[ev])
 
-                        img = product.find('img')['src']
+                        img = product.find('div', class_='item').find('img')['src']
                         new_path = self.Clean_str.CleanUpString().cleanup_link(img)
                         img_link = self.path + new_path
                         data_product.append(img_link)

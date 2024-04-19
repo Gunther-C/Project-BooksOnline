@@ -1,6 +1,6 @@
-from pack_treatmentUrl import url_control, url_requestPage
 import Errors_treatment as Ers
-import csv, sys
+import csv
+import sys
 
 
 class FileTreatmentCsv:
